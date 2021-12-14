@@ -1,0 +1,4 @@
+system:
+  port: 8080
+logs:
+  level: 0

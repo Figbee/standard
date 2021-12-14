@@ -1,0 +1,19 @@
+system:
+  host: 127.0.0.1
+  port: 8888
+  identity-key: idname
+mysql:
+  username: root
+  password: root
+  database: blog
+  host: 127.0.0.1
+  port: 3306
+  query: charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+  log-mode: true
+logs:
+  level: -1
+  path: storage/logs
+  max-size: 50
+  max-backups: 100
+  max-age: 30
+  compress: false

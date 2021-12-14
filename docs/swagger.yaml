@@ -1,0 +1,21 @@
+info:
+  contact: {}
+  license: {}
+paths:
+  /v1/base/userinfo:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户信息
+      parameters:
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+      summary: GetUserInfo 获取用户信息
+swagger: "2.0"
