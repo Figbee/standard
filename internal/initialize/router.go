@@ -29,6 +29,6 @@ func Routers() *gin.Engine {
 	//初始化公共路由
 	router.InitPublicRouter(versionGroup, authMiddleware)
 
-	router.InitBaseRouter(versionGroup, authMiddleware)
+	router.InitUserRouter(versionGroup, authMiddleware)
 	return r
 }

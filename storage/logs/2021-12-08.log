@@ -1,6 +1,0 @@
-2021-12-08T20:46:54.365+0800	debug	standard/main.go:8	初始化日志完成
-2021-12-08T20:56:21.303+0800	debug	standard/main.go:9	初始化日志完成
-2021-12-08T21:04:32.411+0800	debug	standard/main.go:9	初始化日志完成
-2021-12-08T21:04:33.421+0800	panic	standard/main.go:11	数据库连接失败:dial tcp 127.0.0.1:3306: i/o timeout
-2021-12-08T21:05:10.240+0800	debug	standard/main.go:9	初始化日志完成
-2021-12-08T21:05:10.244+0800	debug	standard/main.go:11	数据库连接成功

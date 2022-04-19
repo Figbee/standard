@@ -8,35 +8,41 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var cfgFile bool
+
 var migrateCmd = &cobra.Command{
 	Use:   "migrate",
-	Short: "数据迁移命令",
+	Short: "数据库初始命令",
+
 	Run: func(cmd *cobra.Command, args []string) {
-		initTable()
+		if cfgFile {
+			//	执行数据填充操作
+			initDatas()
+		}
+		//执行数据建表操作
+		migrate()
 	},
 }
 
-//数据库表迁移命令
-func initTable() {
-	err := global.Orm.AutoMigrate(
-		new(model.SysUser),
-		new(model.SysRole),
-		new(model.SysMenu),
-	)
-	if err != nil {
-		global.Logger.Panicf("数据库迁移错误:%v", err)
-	}
-	//初始化数据
-	initDb()
+func init() {
+	//定义参数,并将参数值存储到某个变量中
+	migrateCmd.PersistentFlags().BoolVar(&cfgFile, "config", false, "值为0或者1")
 }
 
-//初始化数据
-func initDb() {
+func migrate() {
+	global.Orm.AutoMigrate(&model.SysUser{}, model.SysRole{}, model.SysMenu{}, model.RoleCasbin{}, model.Api{})
+}
+
+func initDatas() {
 	global.Orm.Create(&model.SysRole{
 		Name:    "admin",
 		Keyword: "admin",
 		Desc:    "管理员",
 	})
-	pass := tools.GenPwd("admin")
-	global.Orm.Create(&model.SysUser{Username: "admin", Password: pass, RoleId: 1})
+	password := tools.GenPwd("admin")
+	global.Orm.Create(&model.SysUser{
+		Username: "admin",
+		Password: password,
+		RoleId:   1,
+	})
 }

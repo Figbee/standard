@@ -21,7 +21,7 @@ func main() {
 	//初始化日志记录组件
 	initialize.InitLogger()
 	//初始化orm成功
-	initialize.InitOrm()
+	initialize.InitMysql()
 	//初始化casbin
 	initialize.InitCasbin()
 	//初始化路由

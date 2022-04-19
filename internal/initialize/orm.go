@@ -9,23 +9,29 @@ import (
 	"gorm.io/gorm"
 )
 
-func InitOrm() {
-	var err error
-	dsn := dsn()
-	global.Orm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+var (
+	dataSource string
+)
+
+func InitMysql() {
+	mysqlConf := global.Conf.Mysql
+	dataSource = fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?%s",
+		mysqlConf.Username,
+		mysqlConf.Password,
+		mysqlConf.Host,
+		mysqlConf.Port,
+		mysqlConf.Database,
+		mysqlConf.Query)
+	//开启mysql日志
+	db, err := gorm.Open(mysql.Open(dataSource), &gorm.Config{})
 	if err != nil {
-		global.Logger.Panicf("数据库连接失败:%v", err)
+		global.Logger.DPanicf("数据库连接失败%d", err)
+		panic("数据库连接失败")
 	}
-	global.Logger.Debug("数据库连接成功")
+	if mysqlConf.LogMode {
+		db.Debug()
+	}
+	global.Orm = db
+
 }
 
-func dsn() string {
-	username := global.Conf.Mysql.Username
-	passord := global.Conf.Mysql.Password
-	host := global.Conf.Mysql.Host
-	port := global.Conf.Mysql.Port
-	query := global.Conf.Mysql.Query
-	dbname := global.Conf.Mysql.Database
-	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?%s",
-		username, passord, host, port, dbname, query)
-}
