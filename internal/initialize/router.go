@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"standard/app/middleware"
 	_ "standard/docs"
+	"standard/internal/app/middleware"
 	"standard/internal/global"
 	"standard/router"
 	v1 "standard/router/api/v1"

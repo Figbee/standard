@@ -2,7 +2,7 @@ package v1
 
 import (
 	"net/http"
-	"standard/app/model"
+	"standard/internal/app/model"
 
 	"github.com/gin-gonic/gin"
 )

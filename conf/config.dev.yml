@@ -4,8 +4,8 @@ system:
   identity-key: idname
 mysql:
   username: root
-  password: root
-  database: blog
+  password: welcome
+  database: goadmin
   host: 127.0.0.1
   port: 3306
   query: charset=utf8&parseTime=True&loc=Local&timeout=1000ms

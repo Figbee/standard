@@ -52,6 +52,7 @@ func (e *Error) withDetails(details ...string) *Error {
 	return &newError
 }
 
+//将Error 错误对象,以gin.H方式封装
 func (e *Error) Gin() gin.H {
 	return gin.H{
 		"code":    e.Code(),

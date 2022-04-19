@@ -24,6 +24,8 @@ func main() {
 	initialize.InitMysql()
 	//初始化casbin
 	initialize.InitCasbin()
+	//初始化验证器
+	initialize.InitValidate()
 	//初始化路由
 	r := initialize.Routers()
 	//执行命令行

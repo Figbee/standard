@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"net/http"
-	"standard/app/model"
+	"standard/internal/app/model"
 	"standard/internal/e"
 	"standard/internal/global"
 

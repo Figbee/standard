@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"net/http"
-	"standard/app/dao"
-	"standard/app/model"
+	"standard/internal/app/dao"
+	"standard/internal/app/model"
 	"standard/internal/global"
 	"standard/pkg/tools"
 	"time"

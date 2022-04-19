@@ -1,11 +1,10 @@
 package cmd
 
 import (
-	"standard/app/model"
+	"github.com/spf13/cobra"
+	"standard/internal/app/model"
 	"standard/internal/global"
 	"standard/pkg/tools"
-
-	"github.com/spf13/cobra"
 )
 
 var cfgFile bool
@@ -15,12 +14,12 @@ var migrateCmd = &cobra.Command{
 	Short: "数据库初始命令",
 
 	Run: func(cmd *cobra.Command, args []string) {
+		//执行数据建表操作
+		migrate()
 		if cfgFile {
 			//	执行数据填充操作
 			initDatas()
 		}
-		//执行数据建表操作
-		migrate()
 	},
 }
 
@@ -30,7 +29,10 @@ func init() {
 }
 
 func migrate() {
-	global.Orm.AutoMigrate(&model.SysUser{}, model.SysRole{}, model.SysMenu{}, model.RoleCasbin{}, model.Api{})
+	err := global.Orm.AutoMigrate(&model.SysUser{}, &model.SysRole{}, &model.SysMenu{}, &model.RoleCasbin{}, &model.Api{})
+	if err != nil {
+		global.Logger.Panic("数据库表迁移失败:%v", err)
+	}
 }
 
 func initDatas() {

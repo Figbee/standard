@@ -1,7 +1,7 @@
 package router
 
 import (
-	"standard/app/middleware"
+	"standard/internal/app/middleware"
 	v1 "standard/router/api/v1"
 
 	jwt "github.com/appleboy/gin-jwt/v2"

@@ -2,7 +2,7 @@ package dao
 
 import (
 	"errors"
-	"standard/app/model"
+	"standard/internal/app/model"
 	"standard/internal/global"
 	"standard/pkg/tools"
 )
